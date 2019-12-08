@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lseema <lseema@student.42.fr>              +#+  +:+       +#+        */
+/*   By: atfoster <atfoster@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/24 14:38:53 by atfoster          #+#    #+#             */
-/*   Updated: 2019/12/08 21:46:20 by lseema           ###   ########.fr       */
+/*   Updated: 2019/12/08 22:08:43 by atfoster         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ t_point		update_map(t_map **map)
 
 	row = 0;
 	while (row < (*map)->size)
-		ft_strdel(&((*map)->map[row++]));
+		free((*map)->map[row++]);
+    free((*map)->map);
 	(*map)->map = make_map_str(++row);
     (*map)->size = row;
     point.y = 0;
