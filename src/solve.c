@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   solve.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atfoster <atfoster@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lseema <lseema@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/08 15:41:31 by atfoster          #+#    #+#             */
-/*   Updated: 2019/12/08 17:09:54 by lseema           ###   ########.fr       */
+/*   Updated: 2019/12/08 21:24:43 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../includes/fillit.h"
 
-void     solver(t_map *map, t_tetrem *tetrem, t_tetrem *head,
+void     solver(t_map **map, t_tetrem *tetrem, t_tetrem *head,
  t_tetrem *back, t_point start)
 {
     while (head != NULL)
@@ -40,13 +40,13 @@ void     solver(t_map *map, t_tetrem *tetrem, t_tetrem *head,
     }
 }
 
-t_point     find_free_point(t_point start, t_map *map)
+t_point     find_free_point(t_point start, t_map **map)
 {
-    while (map->size > start.y)
+    while ((*map)->size > start.y)
     {
-        if (map->map[start.y][start.x] == '.')
+        if ((*map)->map[start.y][start.x] == '.')
             return (start);
-        else if (map->map[start.y][start.x] == '\n')
+        else if ((*map)->map[start.y][start.x] == '\n')
         {
             start.x = 0;
             start.y++;
@@ -58,7 +58,7 @@ t_point     find_free_point(t_point start, t_map *map)
     return (start);
 }
 
-t_point     find_free_pos(t_point start, t_map *map, int *tetrem, int y, int x)
+t_point     find_free_pos(t_point start, t_map **map, int *tetrem, int y, int x)
 {
     int i;
     t_point size;
@@ -66,57 +66,57 @@ t_point     find_free_pos(t_point start, t_map *map, int *tetrem, int y, int x)
     size = sizes(tetrem);
     while ((start = find_free_point(start, map)).x != -1)
     {
-        if (map->size >= start.x + size.x && map->size >= start.y + size.y)
+        if ((*map)->size >= start.x + size.x && (*map)->size >= start.y + size.y)
         {
             i = 2;
             while (i < 8)
             {
                 x = start.x + (tetrem[i++] - tetrem[0]);
                 y = start.y + (tetrem[i++] - tetrem[1]);
-                if (map->map[y][x] != '.')
+                if ((*map)->map[y][x] != '.')
                     i = 9;
             }
             if (i == 8)
                 return (start);
         }
-        if (start.x++ + size.x > map->size && ++start.y)
+        if (start.x++ + size.x > (*map)->size && ++start.y)
             start.x = 0;
     }
     return(start);
 }
 
-t_point    paste_tetrem(t_map *map, t_tetrem *tetrem, t_point start)
+t_point    paste_tetrem(t_map **map, t_tetrem *tetrem, t_point start)
 {
     int i;
     t_point step;
 
-    map->map[start.y][start.x] = tetrem->c;
+    (*map)->map[start.y][start.x] = tetrem->c;
     i = 2;
     while (i < 8)
     {
         step.x = tetrem->tetrem[i++] - tetrem->tetrem[0] + start.x;
         step.y = tetrem->tetrem[i++] - tetrem->tetrem[1] + start.y;
-        map->map[step.y][step.x] = tetrem->c;
+        (*map)->map[step.y][step.x] = tetrem->c;
     }
     step.x = 0;
     step.y = 0;
     return step;
 }
 
-t_point    del_tetrem(char c, t_map *map, int y, int x)
+t_point    del_tetrem(char c, t_map **map, int y, int x)
 {
     t_point point;
     int flag;
 
     flag = 0;
-    while (map->size > y)
+    while ((*map)->size > y)
     {
         x = 0;
-        while (map->map[y][x] != '\n')
+        while ((*map)->map[y][x] != '\n')
         {
-            if (map->map[y][x] == c)
+            if ((*map)->map[y][x] == c)
             {
-                map->map[y][x] = '.';
+                (*map)->map[y][x] = '.';
                 if (flag == 0)
                 {
                     point = get_position(y, x, map);

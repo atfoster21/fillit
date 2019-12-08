@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atfoster <atfoster@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lseema <lseema@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 20:11:10 by lseema            #+#    #+#             */
-/*   Updated: 2019/12/08 17:06:03 by lseema           ###   ########.fr       */
+/*   Updated: 2019/12/08 21:18:51 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,11 @@ int		main(int argc, char **argv)
 	map = create_map(get_min_size(count));
 	start.x = 0;
 	start.y = 0;
-	solver(map, tetrems, tetrems, tetrems, start);
+	solver(&map, tetrems, tetrems, tetrems, start);
 	free_list(tetrems);
 	tetrems = NULL;
 	print_map(map);
-	free_map(map);
+	free_map(&map);
 	map = NULL;
 	return (0);
 }

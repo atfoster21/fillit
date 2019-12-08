@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atfoster <atfoster@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lseema <lseema@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/08 15:35:47 by atfoster          #+#    #+#             */
-/*   Updated: 2019/12/08 17:09:20 by lseema           ###   ########.fr       */
+/*   Updated: 2019/12/08 21:08:32 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,12 +100,15 @@ int     *get_coords_array(char *tetrem)
 
 void    free_list(t_tetrem *head)
 {
+	t_tetrem *tmp;
+
     while(head != NULL)
     {
         free(head->tetrem);
-        head->tetrem = NULL;
+		head->tetrem = NULL;
+		tmp = head;
         head = head->next;
-    }
-    free(head);
+		free(tmp);
+	}
     head = NULL;
 }

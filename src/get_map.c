@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atfoster <atfoster@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lseema <lseema@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/24 14:38:53 by atfoster          #+#    #+#             */
-/*   Updated: 2019/12/08 17:11:37 by lseema           ###   ########.fr       */
+/*   Updated: 2019/12/08 21:46:20 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,16 +38,16 @@ int     get_min_size(int count)
     return (0);
 }
 
-t_point		update_map(t_map *map)
+t_point		update_map(t_map **map)
 {
 	int row;
     t_point point;
 
 	row = 0;
-	while (row < map->size)
-		ft_strdel(&(map->map[row++]));
-	map->map = make_map_str(++row);
-    map->size = row;
+	while (row < (*map)->size)
+		ft_strdel(&((*map)->map[row++]));
+	(*map)->map = make_map_str(++row);
+    (*map)->size = row;
     point.y = 0;
     point.x = 0;
     return point;
@@ -96,17 +96,17 @@ char     **make_map_str(int size)
     return (map);
 }
 
-void		free_map(t_map *map)
+void		free_map(t_map **map)
 {
 	int row;
 
 	if (!map)
 		return ;
 	row = 0;
-	while (row < map->size)
-		ft_strdel(&(map->map[row++]));
-	free(map->map);
-	map->map = NULL;
-	free(map);
-	map = NULL;
+	while (row < (*map)->size)
+		ft_strdel(&((*map)->map[row++]));
+	free((*map)->map);
+	(*map)->map = NULL;
+	free((*map));
+	(*map) = NULL;
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atfoster <atfoster@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lseema <lseema@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/08 15:36:16 by atfoster          #+#    #+#             */
-/*   Updated: 2019/12/08 15:36:20 by atfoster         ###   ########.fr       */
+/*   Updated: 2019/12/08 21:24:02 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,16 @@ t_point     sizes(int *tetrem)
     return(size);
 }
 
-t_point get_position(int y, int x, t_map *map)
+t_point get_position(int y, int x, t_map **map)
 {
     t_point point;
 
     point.x = x;
     point.y = y;
 
-    if (point.x++ >= map->size)
+    if (point.x++ >= (*map)->size)
     {
-        if (point.y++ >= map->size)
+        if (point.y++ >= (*map)->size)
             point.x = -1;
         else
             point.x = 0;
