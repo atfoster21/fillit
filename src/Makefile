@@ -6,7 +6,7 @@
 #    By: atfoster <atfoster@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/04 19:40:59 by klaurine          #+#    #+#              #
-#    Updated: 2019/12/08 16:00:07 by atfoster         ###   ########.fr        #
+#    Updated: 2019/12/08 16:50:00 by lseema           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ OBJECTS = check.o get_map.o read.o solve.o utils.o main.o
 
 CC = gcc
 
-#FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror
 
 LIB = ../libft
 

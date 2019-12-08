@@ -6,7 +6,7 @@
 /*   By: atfoster <atfoster@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 20:11:10 by lseema            #+#    #+#             */
-/*   Updated: 2019/12/08 15:39:20 by atfoster         ###   ########.fr       */
+/*   Updated: 2019/12/08 17:06:03 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void    print_map(t_map *map)
 int		main(int argc, char **argv)
 {
 	int 		fd;
-	size_t 		count;
+	int 		count;
 	t_tetrem 	*tetrems;
 	t_map		*map;
 	t_point		start;

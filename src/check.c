@@ -6,7 +6,7 @@
 /*   By: atfoster <atfoster@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 20:57:37 by lseema            #+#    #+#             */
-/*   Updated: 2019/12/08 15:36:42 by atfoster         ###   ########.fr       */
+/*   Updated: 2019/12/08 17:09:02 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,10 @@ int     check_tetremino(char *chr)
 	return ((blocks == 4) ? 1 : 0);
 }
 
-ssize_t     validate_file(char *file)
+int     validate_file(char *file)
 {
-    int             fd;
-	ssize_t		count_tetrems;
+    int	fd;
+	int	count_tetrems;
     if ((fd = open(file, O_RDONLY)) < 0)
 		return 0;
 	count_tetrems = validate_tetrems(fd);
@@ -68,10 +68,10 @@ ssize_t     validate_file(char *file)
 	return(count_tetrems);
 }
 
-ssize_t		validate_tetrems(int fd)
+int		validate_tetrems(int fd)
 {
-	ssize_t    		count_tetrems;
-    ssize_t    		count_chars;
+	int    		count_tetrems;
+    int    		count_chars;
 	unsigned int	is_newline;
 	char			*buf;
 

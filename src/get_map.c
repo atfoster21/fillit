@@ -6,13 +6,13 @@
 /*   By: atfoster <atfoster@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/24 14:38:53 by atfoster          #+#    #+#             */
-/*   Updated: 2019/12/08 15:38:31 by atfoster         ###   ########.fr       */
+/*   Updated: 2019/12/08 17:11:37 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fillit.h"
 
-size_t     get_min_size(int count)
+int     get_min_size(int count)
 {
     if (count == 1)
         return (2);
@@ -40,7 +40,7 @@ size_t     get_min_size(int count)
 
 t_point		update_map(t_map *map)
 {
-	size_t row;
+	int row;
     t_point point;
 
 	row = 0;
@@ -53,7 +53,7 @@ t_point		update_map(t_map *map)
     return point;
 }
 
-t_map	*create_map(size_t size)
+t_map	*create_map(int size)
 {
 	t_map *map;
 	
@@ -69,10 +69,10 @@ t_map	*create_map(size_t size)
 	return (map);
 }
 
-static char     **make_map_str(size_t size)
+char     **make_map_str(int size)
 {
     char    **map;
-    size_t  i;
+    int  	i;
     
     if ((map = (char **)malloc((sizeof(char *) * (size)))))
     {
@@ -98,7 +98,7 @@ static char     **make_map_str(size_t size)
 
 void		free_map(t_map *map)
 {
-	size_t row;
+	int row;
 
 	if (!map)
 		return ;
