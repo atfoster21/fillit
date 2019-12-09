@@ -6,21 +6,31 @@
 #    By: atfoster <atfoster@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/04 19:40:59 by klaurine          #+#    #+#              #
-#    Updated: 2019/12/09 17:18:11 by atfoster         ###   ########.fr        #
+#    Updated: 2019/12/09 20:04:35 by atfoster         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fillit
 
-SOURCE = check.c get_map.c read.c solve.c utils.c main.c
+SOURCE	=	.src/check.c \
+			.src/get_map.c \
+			.src/read.c \
+			.src/solve.c \
+			.src/utils.c \
+			.src/main.c
 
-OBJECTS = check.o get_map.o read.o solve.o utils.o main.o
+OBJECTS =	./src/check.o \
+			./src/get_map.o \
+			./src/read.o \
+			./src/solve.o \
+			./src/utils.o \
+			./src/main.o
 
 CC = gcc
 
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -g -Wall -Wextra -Werror
 
-LIB = ../libft
+LIB = ./libft
 
 all: $(NAME)
 
