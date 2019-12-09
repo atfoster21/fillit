@@ -6,7 +6,7 @@
 /*   By: lseema <lseema@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 21:15:58 by lseema            #+#    #+#             */
-/*   Updated: 2019/12/09 21:40:04 by lseema           ###   ########.fr       */
+/*   Updated: 2019/12/09 21:59:45 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,9 @@ typedef struct	s_point
 	int			y;
 }				t_point;
 
+int				msg_error();
+int				msg_err_nofile();
+void			print_map(t_map *map);
 int				validate_file(char *file);
 int				validate_tetrems(int fd);
 int				check_tetremino(char *chr);
