@@ -6,7 +6,7 @@
 #    By: atfoster <atfoster@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/04 19:40:59 by klaurine          #+#    #+#              #
-#    Updated: 2019/12/09 21:41:39 by atfoster         ###   ########.fr        #
+#    Updated: 2019/12/09 22:44:17 by atfoster         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,21 +38,17 @@ LIB = ./libft
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
+$(NAME):
 	@make -C $(LIB)/ fclean && make -C $(LIB)/
 	@$(CC) $(FLAGS) -I $(LIB)/libft.a -c $(SRC)
-
-	$(OBJ_DIR)/%.o:$(SRC_DIR)/%.c
-	$(CC) $(CFLAGS) $(LIB) -o $@ -c $<
-
-	$(CC) $(OBJ) $(LIB_LNK) -o $(NAME)
-	@$(CC) -o $(NAME) $(OBJ_DIR) -I $(LIB)/includes -L $(LIB) -lft
+	@$(CC) -o $(NAME) $(OBJ) -I $(LIB)/includes -L $(LIB) -lft
 
 clean:
-	@rm -f $(OBJ)
-	
-fclean: clean
+	rm -rf $(OBJ)
 	@make -C $(LIB)/ fclean
-	@rm -f $(NAME)
-	
+
+fclean: clean
+	rm -rf $(NAME)
+
+
 re: fclean all
