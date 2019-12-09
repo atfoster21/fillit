@@ -6,7 +6,7 @@
 /*   By: lseema <lseema@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/08 15:41:31 by atfoster          #+#    #+#             */
-/*   Updated: 2019/12/09 21:13:14 by lseema           ###   ########.fr       */
+/*   Updated: 2019/12/09 21:27:02 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 void		solver(t_map **map, t_tetrem *tetrem, t_tetrem *back, t_point start)
 {
 	t_tetrem *head;
-	
+
 	head = tetrem;
 	while (head != NULL)
-		if ((start = find_free_pos(start, map, head->tetrem, 0, 0, 0)).x != -1)
+		if ((start = find_free_pos(start, map, head->tetrem, 0)).x != -1)
 		{
 			start = paste_tetrem(map, head, start);
 			head = head->next;
@@ -88,7 +88,7 @@ t_point		find_free_pos(t_point start, t_map **map, int *tetrem, int i)
 
 t_point		paste_tetrem(t_map **map, t_tetrem *tetrem, t_point start)
 {
-	int i;
+	int		i;
 	t_point step;
 
 	(*map)->map[start.y][start.x] = tetrem->c;
@@ -106,8 +106,8 @@ t_point		paste_tetrem(t_map **map, t_tetrem *tetrem, t_point start)
 
 t_point		del_tetrem(char c, t_map **map, int y, int x)
 {
-	t_point point;
-	int flag;
+	t_point	point;
+	int		flag;
 
 	flag = 0;
 	while ((*map)->size > y)

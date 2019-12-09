@@ -6,7 +6,7 @@
 /*   By: lseema <lseema@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 21:15:58 by lseema            #+#    #+#             */
-/*   Updated: 2019/12/09 21:13:10 by lseema           ###   ########.fr       */
+/*   Updated: 2019/12/09 21:40:04 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,26 +17,26 @@
 # include <fcntl.h>
 # include "../libft/libft.h"
 
-typedef struct			s_tetrem
+typedef struct	s_tetrem
 {
-	int			*tetrem;
-	char		c;
+	int				*tetrem;
+	char			c;
 	struct s_tetrem	*next;
-}						t_tetrem;
+}				t_tetrem;
 
-typedef struct			s_map
+typedef struct	s_map
 {
 	char		**map;
 	int			size;
-}						t_map;
+}				t_map;
 
-typedef struct			s_point
+typedef struct	s_point
 {
 	int			x;
 	int			y;
-}						t_point;
+}				t_point;
 
-int     		validate_file(char *file);
+int				validate_file(char *file);
 int				validate_tetrems(int fd);
 int				check_tetremino(char *chr);
 int				get_contact(char *buff);
@@ -54,16 +54,16 @@ int				apply_tetrem(char c, int *coords, t_tetrem *head);
 int				*get_coords_array(char *tetrem);
 int				get_min_x(char *tetrem);
 void			solver(t_map **map, t_tetrem *tetrem, t_tetrem *head,
- t_point start);
+		t_point start);
 t_point			find_free_point(t_point start, t_map **map);
 int				get_width(int *tetrem);
 int				get_height(int *tetrem);
 t_point			find_free_pos(t_point start, t_map **map, int *tetrem, int i);
 t_point			paste_tetrem(t_map **map, t_tetrem *tetrem, t_point start);
 void			print_map(t_map *map);
-t_point    del_tetrem(char c, t_map **map, int y, int x);
-void        free_list(t_tetrem *head);
-t_point     sizes(int *tetrem);
-t_point     get_position(int y, int x, t_map **map);
+t_point			del_tetrem(char c, t_map **map, int y, int x);
+void			free_list(t_tetrem *head);
+t_point			sizes(int *tetrem);
+t_point			get_position(int y, int x, t_map **map);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: atfoster <atfoster@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 20:57:37 by lseema            #+#    #+#             */
-/*   Updated: 2019/12/09 18:08:59 by atfoster         ###   ########.fr       */
+/*   Updated: 2019/12/09 21:29:12 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ int			check_tetremino(char *chr)
 
 int			validate_file(char *file)
 {
-	int			fd;
-	int			count_tetrems;
+	int		fd;
+	int		count_tetrems;
 
 	if ((fd = open(file, O_RDONLY)) < 0)
 		return (0);
@@ -68,10 +68,11 @@ int			validate_file(char *file)
 	close(fd);
 	return (count_tetrems);
 }
+
 int			validate_tetrems(int fd)
 {
-	int			count_tetrems;
-	int			count_chars;
+	int				count_tetrems;
+	int				count_chars;
 	unsigned int	is_newline;
 	char			*buf;
 

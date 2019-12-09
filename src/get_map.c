@@ -6,7 +6,7 @@
 /*   By: atfoster <atfoster@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/24 14:38:53 by atfoster          #+#    #+#             */
-/*   Updated: 2019/12/09 18:30:29 by atfoster         ###   ########.fr       */
+/*   Updated: 2019/12/09 21:28:03 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ int			get_min_size(int count)
 
 t_point		update_map(t_map **map)
 {
-	int row;
-	t_point point;
+	int		row;
+	t_point	point;
 
 	row = 0;
 	while (row < (*map)->size)
