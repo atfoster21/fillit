@@ -6,41 +6,50 @@
 #    By: atfoster <atfoster@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/04 19:40:59 by klaurine          #+#    #+#              #
-#    Updated: 2019/12/09 20:04:35 by atfoster         ###   ########.fr        #
+#    Updated: 2019/12/09 21:41:39 by atfoster         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = fillit
+NAME := fillit
 
-SOURCE	=	.src/check.c \
-			.src/get_map.c \
-			.src/read.c \
-			.src/solve.c \
-			.src/utils.c \
-			.src/main.c
+SRC_DIR	:= ./src
+OBJ_DIR	:= ./src
+SRC	:=		./src/check.c \
+			./src/get_map.c \
+			./src/read.c \
+			./src/solve.c \
+			./src/utils.c \
+			./src/main.c
 
-OBJECTS =	./src/check.o \
-			./src/get_map.o \
-			./src/read.o \
-			./src/solve.o \
-			./src/utils.o \
-			./src/main.o
+OBJ :=		check.o \
+			get_map.o \
+			read.o \
+			solve.o \
+			utils.o \
+			main.o
 
 CC = gcc
 
-FLAGS = -g -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror
 
 LIB = ./libft
 
+.PHONY: all clean fclean re
+
 all: $(NAME)
 
-$(NAME):
+$(NAME): $(OBJ)
 	@make -C $(LIB)/ fclean && make -C $(LIB)/
-	@$(CC) $(FLAGS) -I $(LIB)/libft.a -c $(SOURCE)
-	@$(CC) -o $(NAME) $(OBJECTS) -I $(LIB)/includes -L $(LIB) -lft
+	@$(CC) $(FLAGS) -I $(LIB)/libft.a -c $(SRC)
+
+	$(OBJ_DIR)/%.o:$(SRC_DIR)/%.c
+	$(CC) $(CFLAGS) $(LIB) -o $@ -c $<
+
+	$(CC) $(OBJ) $(LIB_LNK) -o $(NAME)
+	@$(CC) -o $(NAME) $(OBJ_DIR) -I $(LIB)/includes -L $(LIB) -lft
 
 clean:
-	@rm -f check.o get_map.o read.o solve.o utils.o main.o
+	@rm -f $(OBJ)
 	
 fclean: clean
 	@make -C $(LIB)/ fclean
