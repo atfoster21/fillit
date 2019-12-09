@@ -6,7 +6,7 @@
 /*   By: lseema <lseema@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 21:15:58 by lseema            #+#    #+#             */
-/*   Updated: 2019/12/08 21:24:50 by lseema           ###   ########.fr       */
+/*   Updated: 2019/12/09 21:13:10 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,11 @@ int				apply_tetrem(char c, int *coords, t_tetrem *head);
 int				*get_coords_array(char *tetrem);
 int				get_min_x(char *tetrem);
 void			solver(t_map **map, t_tetrem *tetrem, t_tetrem *head,
- t_tetrem *back, t_point start);
-t_point					find_free_point(t_point start, t_map **map);
+ t_point start);
+t_point			find_free_point(t_point start, t_map **map);
 int				get_width(int *tetrem);
 int				get_height(int *tetrem);
-t_point					find_free_pos(t_point start, t_map **map, int *tetrem, int y, int x);
+t_point			find_free_pos(t_point start, t_map **map, int *tetrem, int i);
 t_point			paste_tetrem(t_map **map, t_tetrem *tetrem, t_point start);
 void			print_map(t_map *map);
 t_point    del_tetrem(char c, t_map **map, int y, int x);
