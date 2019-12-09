@@ -6,18 +6,19 @@
 /*   By: lseema <lseema@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/08 15:41:31 by atfoster          #+#    #+#             */
-/*   Updated: 2019/12/09 19:37:57 by atfoster         ###   ########.fr       */
+/*   Updated: 2019/12/09 21:27:02 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fillit.h"
 
-void		solver(t_map **map, t_tetrem *tetrem, t_tetrem *head,
-		t_tetrem *back, t_point start)
+void		solver(t_map **map, t_tetrem *tetrem, t_tetrem *back, t_point start)
 {
+	t_tetrem *head;
+
+	head = tetrem;
 	while (head != NULL)
-	{
-		if ((start = find_free_pos(start, map, head->tetrem, 0, 0)).x != -1)
+		if ((start = find_free_pos(start, map, head->tetrem, 0)).x != -1)
 		{
 			start = paste_tetrem(map, head, start);
 			head = head->next;
@@ -37,7 +38,6 @@ void		solver(t_map **map, t_tetrem *tetrem, t_tetrem *head,
 				}
 			}
 		}
-	}
 }
 
 t_point		find_free_point(t_point start, t_map **map)
@@ -58,9 +58,8 @@ t_point		find_free_point(t_point start, t_map **map)
 	return (start);
 }
 
-t_point		find_free_pos(t_point start, t_map **map, int *tetrem, int y, int x)
+t_point		find_free_pos(t_point start, t_map **map, int *tetrem, int i)
 {
-	int			i;
 	t_point		size;
 
 	size = sizes(tetrem);
@@ -72,10 +71,11 @@ t_point		find_free_pos(t_point start, t_map **map, int *tetrem, int y, int x)
 			i = 2;
 			while (i < 8)
 			{
-				x = start.x + (tetrem[i++] - tetrem[0]);
-				y = start.y + (tetrem[i++] - tetrem[1]);
-				if ((*map)->map[y][x] != '.')
+				i++;
+				if ((*map)->map[start.y + (tetrem[i] - tetrem[1])]
+				[start.x + (tetrem[i - 1] - tetrem[0])] != '.')
 					i = 9;
+				i++;
 			}
 			if (i == 8)
 				return (start);
@@ -88,7 +88,7 @@ t_point		find_free_pos(t_point start, t_map **map, int *tetrem, int y, int x)
 
 t_point		paste_tetrem(t_map **map, t_tetrem *tetrem, t_point start)
 {
-	int i;
+	int		i;
 	t_point step;
 
 	(*map)->map[start.y][start.x] = tetrem->c;
@@ -106,8 +106,8 @@ t_point		paste_tetrem(t_map **map, t_tetrem *tetrem, t_point start)
 
 t_point		del_tetrem(char c, t_map **map, int y, int x)
 {
-	t_point point;
-	int flag;
+	t_point	point;
+	int		flag;
 
 	flag = 0;
 	while ((*map)->size > y)
